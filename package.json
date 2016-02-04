@@ -1,0 +1,28 @@
+{
+  "name": "package-webpack-extract-css-plugin",
+  "version": "0.0.1",
+  "description": "This plugin is used by qunar package team, it will extract the css compiled result from webpack compilation and write to the separate path.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sdwangbaotong/package-webpack-extract-css-plugin.git"
+  },
+  "keywords": [
+    "package",
+    "webpack",
+    "extract",
+    "css"
+  ],
+   "author": {
+    "name": "baotong.wang",
+    "email": "baotong.wang@qunar.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sdwangbaotong/package-webpack-extract-css-plugin/issues"
+  },
+  "homepage": "https://github.com/sdwangbaotong/package-webpack-extract-css-plugin"
+}
