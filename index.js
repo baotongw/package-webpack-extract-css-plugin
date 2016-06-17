@@ -42,7 +42,16 @@ MyPlugin.prototype.apply = function(compiler) {
                     cssFileName = file.replace(jsPattern, '$1' + 'css');
                     chunk.files[index] = cssFileName;
 
-                    var source = chunk.modules[index]._source._value;
+                    var source = chunk.modules[index]._source
+                    if(source){
+                        source = source._value;
+                    }else{
+                        return;
+                        //解决entry 配置为{
+                        // key:[value]
+                        // }的形式会出现的异常
+                    }
+
                     //remove the bracket symbol from the compiled css string
                     //which is added by the package-webpack-css-loader
                     source = source.slice(1, source.length - 1);
