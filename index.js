@@ -1,6 +1,7 @@
 function MyPlugin(options) {
     this.context = null;
     this.options = null;
+    this.CleanCSS = require('clean-css');
 }
 
 MyPlugin.prototype.isCss = function(modules) {
@@ -69,8 +70,10 @@ MyPlugin.prototype.apply = function(compiler) {
                         // dev mode
                         cssAsset._source.children = [source];
                     } else {
-                        // prd mode
-                        cssAsset._value = source; 
+                        // prd mode - minify css
+                        cssAsset._value = new self.CleanCSS({
+                            keepBreaks: true
+                        }).minify(source);
                     }
 
                     //把webpack默认的css生成结果干掉
