@@ -28,7 +28,7 @@ MyPlugin.prototype.apply = function(compiler) {
 
     var source,
         jsPattern = /(.+\.)js$/,
-        cssFileName;;
+        cssFileName;
 
     compiler.plugin("after-compile", function(compilation, callback) {
 
@@ -64,8 +64,14 @@ MyPlugin.prototype.apply = function(compiler) {
                     source = JSON.parse(source);
                     source = source.content.join('\n');
 
-                    compilation.assets[cssFileName] = compilation.assets[file];
-                    compilation.assets[cssFileName]._source.children = [source];
+                    var cssAsset = compilation.assets[cssFileName] = compilation.assets[file];
+                    if(cssAsset._source) {
+                        // dev mode
+                        cssAsset._source.children = [source];
+                    } else {
+                        // prd mode
+                        cssAsset._value = source; 
+                    }
 
                     //把webpack默认的css生成结果干掉
                     delete compilation.assets[file];
